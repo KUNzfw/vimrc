@@ -54,6 +54,8 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "suda
 Plug 'lambdalisue/suda.vim'
+"indentLine
+Plug 'Yggdroot/indentLine'
 call plug#end()
 
 "airline配置
@@ -124,4 +126,9 @@ let g:autoformat_verbosemode=1
 let g:autoformat_autoindent = 0
 let g:autoformat_retab = 0
 let g:autoformat_remove_trailing_spaces = 0
+
+"indentLine
+let g:indentLine_char='┆'
+let g:indentLine_enabled = 1
+let g:indentLine_color_term = 243
 
