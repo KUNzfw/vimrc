@@ -33,9 +33,12 @@ set autochdir           "自动切换工作目录
 set noerrorbells        "不要发出响声
 set history=1000        "记住的操作历史数量
 set autoread            "打开文件监视
+set t_Co=256
 "命令模式补全设置
 set wildmenu
 set wildmode=longest:list,full
+
+filetype off
 
 "vim-plug设置
 call plug#begin('~/.vim/plugged')
@@ -45,17 +48,23 @@ Plug 'Chiel92/vim-autoformat'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 "nerdtree
-Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'xuyuanp/nerdtree-git-plugin', { 'on':  'NERDTreeToggle' }
 "bufexplorer
 Plug 'vim-scripts/bufexplorer.zip'
 "gutentags
 Plug 'ludovicchabant/vim-gutentags'
 "coc.nvim
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'branch': 'release','for': ['cpp','c','python','go']}
 "suda
 Plug 'lambdalisue/suda.vim'
-"indentLine
-Plug 'Yggdroot/indentLine'
+"polyglot
+Plug 'sheerun/vim-polyglot'
+"markdown
+Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
+Plug 'dhruvasagar/vim-table-mode', {'for': 'markdown'}
+"vimcdoc
+Plug 'yianwillis/vimcdoc'
 call plug#end()
 
 "airline配置
@@ -77,10 +86,17 @@ map <leader>nn :NERDTreeToggle<cr>
 command W w suda://%
 "其他
 nmap <leader>w :w!<cr>
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
+"快速切换窗口
+nnoremap <C-j> <C-W>j
+nnoremap <C-k> <C-W>k
+nnoremap <C-h> <C-W>h
+nnoremap <C-l> <C-W>l
+"快速调整窗口大小
+nnoremap <C-up> <C-W>-
+nnoremap <C-down> <C-W>+
+nnoremap <C-left> <C-W><
+nnoremap <C-right> <C-W>>
+
 
 "插件配置
 let g:bufExplorerDefaultHelp=0
@@ -121,14 +137,20 @@ if !isdirectory(s:vim_tags)
 endif
 
 "F3自动格式化代码
-noremap <F3> :Autoformat<CR>
+nnoremap <silent> <leader>f :Autoformat<CR><CR>
 let g:autoformat_verbosemode=1
 let g:autoformat_autoindent = 0
 let g:autoformat_retab = 0
 let g:autoformat_remove_trailing_spaces = 0
 
-"indentLine
-let g:indentLine_char='┆'
-let g:indentLine_enabled = 1
-let g:indentLine_color_term = 243
+"markdown
+filetype plugin indent on
+let g:instant_markdown_browser = "google-chrome-stable --new-window"
+let g:instant_markdown_open_to_the_world = 1
+" Use this option to define the table corner character
+let g:table_mode_corner = '|'
+" Use this option to define the delimiter which used by
+let g:table_mode_delimiter = ' '
 
+"polyglot
+let g:polyglot_disabled = ['markdown']
