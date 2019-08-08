@@ -55,7 +55,7 @@ Plug 'vim-scripts/bufexplorer.zip'
 "gutentags
 Plug 'ludovicchabant/vim-gutentags'
 "coc.nvim
-Plug 'neoclide/coc.nvim', {'branch': 'release','for': ['cpp','c','python','go']}
+Plug 'neoclide/coc.nvim', {'tag': '*','branch': 'release','for': ['cpp','c','python','go','html','js','css','json']}
 "suda
 Plug 'lambdalisue/suda.vim'
 "polyglot
@@ -96,6 +96,8 @@ nnoremap <C-up> <C-W>-
 nnoremap <C-down> <C-W>+
 nnoremap <C-left> <C-W><
 nnoremap <C-right> <C-W>>
+"取消搜索高亮
+nnoremap <leader>/ :nohl<cr>
 
 
 "插件配置
@@ -107,7 +109,6 @@ let g:bufExplorerSortBy='name'
 let g:NERDTreeWinPos = "right"
 let NERDTreeShowHidden=0
 let NERDTreeIgnore = ['\.pyc$', '__pycache__']
-let g:NERDTreeWinSize=35
 
 " 自动补全配置
 set completeopt=noinsert,menuone,noselect
