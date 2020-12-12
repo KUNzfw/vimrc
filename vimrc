@@ -43,6 +43,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 "suda
 Plug 'lambdalisue/suda.vim'
+"coc-nvim
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 "airline配置
